@@ -1,4 +1,5 @@
 from pawn import Pawn
+from king import King
 from queen import Queen
 
 class Grid():
@@ -19,12 +20,20 @@ class Grid():
         if x < 0 or y < 0 or y > 8 or x > 8:
             return None
         
+        if isinstance(self.array[x-1][y-1][0],King):
+            print("yes")
+            return False
+        
         if self.array[x-1][y-1][0] == None:
             return True
+        
         else:
             return False
     
     def get_tile_color(self, x, y):
+        if isinstance(self.array[x-1][y-1][0],King):
+            return None
+        
         return self.array[x-1][y-1][1]
     
     def additem(self,item):
@@ -41,8 +50,7 @@ class Grid():
                 for j in range(self.columns):
                     if self.array[i][j][2] == 1:
                         self.array[i][j][2] = 0
-                        
-                    
+                         
     def print_grid(self):
         for i in self.array:
             print(i)
@@ -75,8 +83,6 @@ class Grid():
             self.clear_grid()
             return []
 
-       
-        
         self.last_clicked = [x,y,self.array[x][y]]
         self.last_clicked[2][2] = 0
         self.array[x][y][2] = 1

@@ -1,4 +1,4 @@
-from grid import Grid
+# from grid import Grid
 
 class King():
     
@@ -18,7 +18,7 @@ class King():
     def set_position(self, x, y):
         self.position = [x, y]
     
-    def possible_move(self, grid:Grid):
+    def possible_move(self, grid):
         lst = []
 
         row, col = self.position

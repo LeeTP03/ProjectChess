@@ -11,8 +11,8 @@ from queen import Queen
 ROW_COUNT = 8
 COLUMN_COUNT = 8
 
-WIDTH = 45
-HEIGHT = 45
+WIDTH = 60
+HEIGHT = 60
 
 MARGIN = 5
 
@@ -62,18 +62,27 @@ class MyGame(arcade.Window):
     def on_draw(self):
 
         self.clear()
-
+        i = 0
         # Draw the grid
         for row in range(ROW_COUNT):
             for column in range(COLUMN_COUNT):
                 # Figure out what color to draw the box
                 
                 
-                if self.grid[row][column][2] == 0:
-                    color = arcade.color.WHITE
+                if i == 0:
+                    color = arcade.color.ANTIQUE_BRASS
+                    i=1
+                    if column == 7:
+                        i=0
+                        
+                elif i == 1:
+                    color = arcade.color.COCONUT
+                    i=0
+                    if column == 7:
+                        i=1
                     
-                if self.grid[row][column][0] != None:
-                    color = arcade.color.YELLOW
+                # if self.grid[row][column][0] != None:
+                #     color = arcade.color.YELLOW
                     
                 if self.grid[row][column][2] == 1:
                     color = arcade.color.GREEN
