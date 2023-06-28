@@ -9,6 +9,7 @@ class Grid():
         self.columns = 8
         self.array = []
         self.last_clicked = [0,0,[None,None,0]]
+        self.turn = True
         
         for i in range(self.row):
             l = []
@@ -54,6 +55,14 @@ class Grid():
     def print_grid(self):
         for i in self.array:
             print(i)
+            
+        
+    def player_turn(self):
+        self.turn = not self.turn
+        
+    def check_win_condition(self):
+        pass
+        
                     
     def clicked_tile(self,x,y):
         self.clear_grid(1)
@@ -74,6 +83,9 @@ class Grid():
                     self.array[x][y] = [(Queen(x+1, y+1, "white")), True, 0]
                 if x == 0:
                     self.array[x][y] = [(Queen(x+1, y+1, "black")), False, 0]
+            
+            self.player_turn()
+            
             return []
         
         if x != self.last_clicked[0] or y != self.last_clicked[1]:
@@ -81,6 +93,9 @@ class Grid():
             
         if self.array[x][y][0] == None:
             self.clear_grid()
+            return []
+        
+        if self.array[x][y][0].color != self.turn:
             return []
 
         self.last_clicked = [x,y,self.array[x][y]]

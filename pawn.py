@@ -36,7 +36,7 @@ class Pawn():
                 if grid.get_tile_color(row+1, col+1) == False:
                     lst.append([row+1, col+1])
                     
-            if row+1 <= grid.row and col-1 >= 0 :
+            if row+1 <= grid.row and col-1 > 0 :
                 if grid.get_tile_color(row+1, col-1) == False:
                     lst.append([row+1, col-1])
         
@@ -48,7 +48,7 @@ class Pawn():
             if row-1 > 0 and grid.check_free(row-1, col):
                 lst.append([row-1, col])
             
-            if row-1 > 0 and col+1 < grid.columns :
+            if row-1 > 0 and col+1 <= grid.columns :
                 if grid.get_tile_color(row-1, col+1) == True:
                     lst.append([row-1, col+1])
                     
